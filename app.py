@@ -1,7 +1,6 @@
 from datetime import date
 import yfinance as yf
 import pandas as pd
-from prettytable import PrettyTable
 import streamlit as st
 
 def main():
@@ -30,18 +29,18 @@ def main():
     dividends = stock.dividends[purchase_year:sell_year]
     df = pd.DataFrame(columns=['Date', 'Shares', 'Total Value'])
 
-    table = PrettyTable()
-    table.padding_width = 3
-    table.field_names = [
-        "Date",
-        "Share Price",
-        "Shares",
-        "Market$Value",
-        "Dividend/share",
-        "Total Dividends",
-        "DRIP (shares)",
-        "Current Balance"
-    ]
+    # table = PrettyTable()
+    # table.padding_width = 3
+    # table.field_names = [
+    #     "Date",
+    #     "Share Price",
+    #     "Shares",
+    #     "Market$Value",
+    #     "Dividend/share",
+    #     "Total Dividends",
+    #     "DRIP (shares)",
+    #     "Current Balance"
+    # ]
 
     """
         Get the stock price from the date given by the current quarter of dividend price. I.e. dividend price
@@ -59,16 +58,16 @@ def main():
 
         drip = (total_dividend + balance) // stock_price
 
-        table.add_row([
-            quarter_date,
-            "$" + format(stock_price, ',.2f'),
-            format(shares, ',d'),
-            "$" + format(total_value, ",.2f"),
-            "$" + format(dividend, ',.4f'),
-            "$" + str(round(total_dividend, 4)),
-            format(drip, ',.0f'),
-            "$" + format(balance, ',.5f')
-        ])
+        # table.add_row([
+        #     quarter_date,
+        #     "$" + format(stock_price, ',.2f'),
+        #     format(shares, ',d'),
+        #     "$" + format(total_value, ",.2f"),
+        #     "$" + format(dividend, ',.4f'),
+        #     "$" + str(round(total_dividend, 4)),
+        #     format(drip, ',.0f'),
+        #     "$" + format(balance, ',.5f')
+        # ])
 
         new_row = {'Date': quarter_date, 'Shares': shares, 'Total Value': total_value}
         df.loc[len(df)] = new_row
@@ -80,7 +79,7 @@ def main():
             balance -= stock_price
             shares += 1
 
-    print(table)
+    # print(table)
     df.set_index('Date', inplace=True)
 
     print(df)
