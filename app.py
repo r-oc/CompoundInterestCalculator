@@ -90,6 +90,8 @@ def main():
     # print(df)
     st.title('Welcome to Ryan.O.C Compound Interest Calculator!\n')
 
+    st.write("""Checking stock: """, ticker)
+
     st.line_chart(df['Total Value'])
 
     s = "${0:,.2f}".format(a)
