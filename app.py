@@ -13,6 +13,8 @@ def main():
     # ticker = str(input("Enter the stock (ticker): "))
     # shares = input("Enter the total shares you own: ")
 
+    st.set_page_config(page_title="r.oc's Stock Data", page_icon="📈")
+    
     st.sidebar.header("Enter the symbol ticker you want to look at...")
     start_date = st.sidebar.text_input("Start Date", "1998-01-01")
     end_date = st.sidebar.text_input("End Date", "2023-08-09")
